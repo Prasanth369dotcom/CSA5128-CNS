@@ -11,16 +11,15 @@ void ce();
 long int cd(long int); 
 void encrypt(); 
 void decrypt(); 
-void main() 
-{ 
-clrscr(); 
+int main() 
+{  
 printf("\nENTER FIRST PRIME NUMBER\n"); 
 scanf("%d",&p); 
 flag=prime(p); 
 if(flag==0) 
 { 
 printf("\nWRONG INPUT\n"); 
-getch(); 
+return 0; 
 } 
 printf("\nENTER ANOTHER PRIME NUMBER\n"); 
 scanf("%d",&q); 
@@ -28,7 +27,7 @@ flag=prime(q);
 if(flag==0||p==q) 
 { 
 printf("\nWRONG INPUT\n"); 
-getch(); 
+return 0;
 } 
 printf("\nENTER MESSAGE\n"); 
 fflush(stdin); 
@@ -43,7 +42,7 @@ for(i=0;i<j-1;i++)
 printf("\n%ld\t%ld",e[i],d[i]); 
 encrypt(); 
 decrypt(); 
-getch(); 
+return 0;
 } 
 int prime(long int pr) 
 { 
