@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+#define MAX_TEXT_LENGTH 1000
+void vigenere_encrypt(char *plaintext, char *key) {
+    int plain_len = strlen(plaintext);
+    int key_len = strlen(key);
+    int i, j;
+    for (i = 0, j = 0; i < plain_len; ++i, ++j) {
+                if (j == key_len)
+            j = 0;
+        if (isalpha(plaintext[i])) {
+            int shift = toupper(key[j]) - 'A';
+            if (islower(plaintext[i]))
+                plaintext[i] = 'a' + (plaintext[i] - 'a' + shift) % 26;
+            else
+                plaintext[i] = 'A' + (plaintext[i] - 'A' + shift) % 26;
+        } else {
+            --j;
+        }
+   }
+}
+int main() {
+    char plaintext[MAX_TEXT_LENGTH];
+    char key[MAX_TEXT_LENGTH];
+printf("Enter plaintext: ");
+    fgets(plaintext, MAX_TEXT_LENGTH, stdin);
+    printf("Enter key: ");
+    fgets(key, MAX_TEXT_LENGTH, stdin);
+    plaintext[strcspn(plaintext, "\n")] = '\0';
+    key[strcspn(key, "\n")] = '\0';
+    vigenere_encrypt(plaintext, key);
+    printf("Encrypted text: %s\n", plaintext);
+
+    return 0;
+}
